@@ -1,0 +1,26 @@
+<html ng-app="myApp">
+<head>
+
+<script src = "lib/angular/angular.js"></script>
+<script src = "js/controllers.js"></script>
+<link rel = "stylesheet" href="css/style.css">
+</head>
+<body>
+<div class = "main" ng-controller="MyController">
+	<ul class="spelllist">
+		<li class ="spell cf" ng-repeat="item in spells">
+			 <h2>{{item.name}}</h2>
+			 <h3>{{item.desc}}</h3>
+
+				
+		
+			
+			</li>
+	</ul>
+</div>
+
+
+
+</body>
+
+</html>
