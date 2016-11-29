@@ -22,12 +22,11 @@
 		</label>
 			
 	</div>
-	<ul class="spelllist">
+	<ul class="spelllist" >
 		<li class ="spell cf" ng-repeat="item in spells | filter:query | orderBy: spellOrder:direction">
 		<a href="#!/details/{{spells.indexOf(item)}}">
 			 <h2>{{item.name | uppercase}} {{item.level}}</h2>
 		 </a>
-			 <h3>{{item.desc}}</h3>
 			 <h4>{{item.page}}, {{item.range}}, {{item.components}}, {{item.material}}, {{item.ritual}}</h4>
 			<h4>{{item.duration}}, {{item.casting_time}}, {{item.school}}, {{item.class}}</h4>
 			</li>
