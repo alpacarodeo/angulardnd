@@ -1,0 +1,36 @@
+<section class="spellpage">
+
+<div class = "search">
+		<h1>Spell Directory</h1>
+		<label>search</label>
+		<input ng-model="query" placeholder ="search for spells" autofocus>
+		<label class ="formgroup">by:
+			<select ng-model="spellOrder">
+				<option value = "name">Name</option>
+				<option value = "range">range</option>
+			</select>
+		</label>
+
+		<label class="formgroup">
+
+			<input type="radio" ng-model = "direction" name="direction" checked>
+			ascending
+		</label>
+		<label class="formgroup">
+			<input type="radio" ng-model = "direction" name="direction" value = "reverse">
+			descending
+		</label>
+			
+	</div>
+	<ul class="spelllist">
+		<li class ="spell cf" ng-repeat="item in spells | filter:query | orderBy: spellOrder:direction">
+		<a href="#!/details/{{spells.indexOf(item)}}">
+			 <h2>{{item.name | uppercase}} {{item.level}}</h2>
+		 </a>
+			 <h3>{{item.desc}}</h3>
+			 <h4>{{item.page}}, {{item.range}}, {{item.components}}, {{item.material}}, {{item.ritual}}</h4>
+			<h4>{{item.duration}}, {{item.casting_time}}, {{item.school}}, {{item.class}}</h4>
+			</li>
+	</ul>
+
+</section>
