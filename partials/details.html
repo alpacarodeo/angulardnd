@@ -1,9 +1,10 @@
+
 <section class="spellinfo">
 	<div class = "spell cf" ng-model ="spells">
 		<a href="#!/details/{{prevItem}}" class="btn btn-left">&lt; </a>
 		<a href="#!/details/{{nextItem}}" class="btn btn-left">&gt; </a>
 		<h1>{{spells[whichItem].name}}</h1>
-		<h2>{{spells[whichItem].level}} {{spells[whichItem].school}}</h2>
+		<h2>{{spells[whichItem].level}} {{spells[whichItem].school}} {{spells[whichItem].ritual == "yes" ? "(ritual)" : ""}}</h2>
 		<h3>Casting time: {{spells[whichItem].casting_time}}</h3>
 		<h3>Range: {{spells[whichItem].range}}</h3>
 		<h3>Components: {{spells[whichItem].components}}</h3>
@@ -13,6 +14,7 @@
 			
 		</div>
 	</div>
-
+<!--<div ng-show="spells[whichItem].ritual == 'yes'" >(ritual)</div> # alternative way to check-->
 	<a href="#!/list">&laquo; Back to search</a>
 </section>
+

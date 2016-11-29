@@ -20,10 +20,23 @@
 			<input type="radio" ng-model = "direction" name="direction" value = "reverse">
 			descending
 		</label>
+		<tr>
+		<label class = "formgroup"><td>Search By:</td></label>
+			<td>
+				<select ng-model="queryBy">
+					<option value ="name">Name</option>
+					<option value = "level">Level </option>
+					<option value = "class">Class </option>
+				</select>
+			</td>
+
+
+
+		</tr>
 			
 	</div>
 	<ul class="spelllist" >
-		<li class ="spell cf" ng-repeat="item in spells | filter:query | orderBy: spellOrder:direction">
+		<li class ="spell cf" ng-repeat="item in spells | filter:queryFilter | orderBy: spellOrder:direction">
 		<a href="#!/details/{{spells.indexOf(item)}}">
 			 <h2>{{item.name | uppercase}} {{item.level}}</h2>
 		 </a>
