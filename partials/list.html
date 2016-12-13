@@ -54,13 +54,13 @@
 		<ul class="spelllist" >
 			<li class ="spell cf" ng-repeat="item in spells | filter:queryFilter | orderBy: sortOrder:direction | filter:classFilter">
 			<a href="#!/details/{{spells.indexOf(item)}}">
-				 <h2>{{item.name | uppercase}} {{item.level}}</h2>
+				 <h2>{{item.name | uppercase}} ({{item.level}})</h2>
 			 </a>
 				<!-- <h4>{{item.page}}, {{item.range}}, {{item.components}}, {{item.material}}, {{item.ritual}}</h4>
 				<h4>{{item.duration}}, {{item.casting_time}}, {{item.school}}, </h4> -->
-
+				<h4>School: {{item.school}}</h4>
 				<h4>Classes: {{item.class}}</h4>
-				<h4>Filter array contains {{selected}} </h4>
+				
 				</li>
 		</ul>
 	</div>

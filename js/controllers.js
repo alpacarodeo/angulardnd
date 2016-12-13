@@ -20,7 +20,7 @@ spellControllers.controller('ListController', function ($scope, $http) {
   	});
 	/* grab json data
 	*/
-	$http.get("js/test.json").then(function(response) {
+	$http.get("js/data.json").then(function(response) {
 		$scope.spells = response.data;
 		console.log("Response.data: " + response.data);
 		$scope.spellOrder = 'name';
