@@ -1,48 +1,68 @@
 <section class="spellpage">
 
-<div class = "search">
-		<h1>Spell Directory</h1>
-		<label>search</label>
-		<input ng-model="query" placeholder ="search for spells" autofocus>
-		<label class ="formgroup">by:
-			<select ng-model="spellOrder">
-				<option value = "name">Name</option>
-				<option value = "range">range</option>
-			</select>
-		</label>
-
-		<label class="formgroup">
-
-			<input type="radio" ng-model = "direction" name="direction" checked>
-			ascending
-		</label>
-		<label class="formgroup">
-			<input type="radio" ng-model = "direction" name="direction" value = "reverse">
-			descending
-		</label>
-		<tr>
-		<label class = "formgroup"><td>Search By:</td></label>
-			<td>
-				<select ng-model="queryBy">
-					<option value ="name">Name</option>
-					<option value = "level">Level </option>
-					<option value = "class">Class </option>
-				</select>
-			</td>
-
-
-
-		</tr>
+	<div class = "search" >
+			<h1>Spell Directory</h1>
+			<label>search</label>
+			<input ng-model="query" placeholder ="search for spells" autofocus>
 			
+			<label class ="formgroup">Sort by:
+				<select ng-model="sortOrder">
+					<option ng-value = "name" >Name</option>
+					<option value = "level">Level</option>
+				</select>
+			</label>
+			<br>
+			
+			<label class="formgroup">
+				<input type="radio" ng-model = "direction" name="direction" checked>
+				Ascending
+			</label>
+			<label class="formgroup">
+				<input type="radio" ng-model = "direction" name="direction" value = "reverse">
+				Descending
+			</label>
+			<br>
+			
+			<tr>
+			<label class = "formgroup"><td>Search In:</td></label>
+				<td>
+					<select ng-model="queryBy">
+						<option value ="name">Name</option>
+						<option value = "level">Level </option>
+						<option value = "class">Class </option>
+					</select>
+				</td>
+			</tr>
+			<br>
+			<fieldset>
+			<md-checkbox aria-label="Select All" 
+							ng-checked="isChecked()" 
+							md-indeterminate="isIndeterminate()" 
+							ng-click="toggleAll()">
+				<span ng-if="isChecked()">Un-</span>Select All
+			</md-checkbox>
+			<div class="formgroup" ng-repeat="item in items">
+				<md-checkbox ng-checked="exists(item, selected)" ng-click="toggle(item,selected)">
+					{{item}}
+				</md-checkbox>
+			</div>
+			</fieldset>
+
+				
 	</div>
-	<ul class="spelllist" >
-		<li class ="spell cf" ng-repeat="item in spells | filter:queryFilter | orderBy: spellOrder:direction">
-		<a href="#!/details/{{spells.indexOf(item)}}">
-			 <h2>{{item.name | uppercase}} {{item.level}}</h2>
-		 </a>
-			 <h4>{{item.page}}, {{item.range}}, {{item.components}}, {{item.material}}, {{item.ritual}}</h4>
-			<h4>{{item.duration}}, {{item.casting_time}}, {{item.school}}, {{item.class}}</h4>
-			</li>
-	</ul>
+	<div class="display">
+		<ul class="spelllist" >
+			<li class ="spell cf" ng-repeat="item in spells | filter:queryFilter | orderBy: sortOrder:direction | filter:classFilter">
+			<a href="#!/details/{{spells.indexOf(item)}}">
+				 <h2>{{item.name | uppercase}} {{item.level}}</h2>
+			 </a>
+				<!-- <h4>{{item.page}}, {{item.range}}, {{item.components}}, {{item.material}}, {{item.ritual}}</h4>
+				<h4>{{item.duration}}, {{item.casting_time}}, {{item.school}}, </h4> -->
+
+				<h4>Classes: {{item.class}}</h4>
+				<h4>Filter array contains {{selected}} </h4>
+				</li>
+		</ul>
+	</div>
 
 </section>

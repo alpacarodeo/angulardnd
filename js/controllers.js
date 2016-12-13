@@ -1,12 +1,16 @@
-var spellControllers = angular.module('spellControllers', ['ngAnimate', 'ngSanitize']);
+var spellControllers = angular.module('spellControllers', ['ngAnimate', 'ngSanitize', 'ngMaterial']);
 
+/* safely parse html with ngSanitize
+*/
 spellControllers.filter('to_trusted', ['$sce', function($sce){
         return function(text) {
             return $sce.trustAsHtml(text);
         };
-    }])
+    }]);
 spellControllers.controller('ListController', function ($scope, $http) {
 
+	/* what
+	*/
 	Object.defineProperty($scope, "queryFilter", {
       get: function() {
           var out = {};
@@ -14,11 +18,71 @@ spellControllers.controller('ListController', function ($scope, $http) {
           return out;
       	}
   	});
-
-	$http.get("js/data.json").then(function(response) {
+	/* grab json data
+	*/
+	$http.get("js/test.json").then(function(response) {
 		$scope.spells = response.data;
-		$scope.artistOrder = 'name';
+		console.log("Response.data: " + response.data);
+		$scope.spellOrder = 'name';
 	});
+
+
+	/* check all boxes at once
+	https://material.angularjs.org/latest/demo/checkbox */
+	$scope.items = ["Bard", "Druid", "Ranger", "Cleric", "Sorcerer", "Paladin", "Wizard", "Warlock"];
+	$scope.selected = [];
+	$scope.toggle = function(item, list) {
+		var idx = list.indexOf(item);
+		if (idx > -1) {
+			list.splice(idx,1);
+		} else {
+			list.push(item);
+		}
+	};
+	$scope.exists = function(item, list) {
+		return list.indexOf(item) > -1;
+	};
+	$scope.isIndeterminate = function() {
+		return ($scope.selected.length !== 0 &&
+				$scope.selected.length !== $scope.items.length);
+	};
+
+	$scope.isChecked = function() {
+		return $scope.selected.length === $scope.items.length;
+	};
+
+	$scope.toggleAll = function() {
+		if ($scope.selected.length === $scope.items.length) {
+			$scope.selected = [];
+		} else if ($scope.selected.length === 0 || $scope.selected.length > 0 ) {
+			$scope.selected = $scope.items.slice(0);
+		}
+	};
+	$scope.toggleAll();
+	/* end */
+
+
+	$scope.classFilter = function(item) {
+		spellClasses = item.class;
+		spellName = item.name;
+		console.log(item.name + ": " + item.class);
+		var flag = false;
+		
+		selected = $scope.selected;
+		angular.forEach(selected, function(value,key) {
+			if (spellClasses.match(value)) {
+				console.log(value + " is able to cast " + spellName);
+
+				flag = true;;
+			}
+		});
+
+		return flag;
+
+		
+
+	};
+
 
 });
 
