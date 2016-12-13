@@ -1,0 +1,23 @@
+{
+  "name": "angulardnd",
+  "version": "1.0.0",
+  "description": "angular dnd spell list",
+  "main": "index.js",
+  "dependencies": {
+    "angular-material": "^1.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lapphi/angulardnd.git"
+  },
+  "author": "@lapphi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lapphi/angulardnd/issues"
+  },
+  "homepage": "https://github.com/lapphi/angulardnd#readme"
+}
